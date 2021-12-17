@@ -1,12 +1,7 @@
 import { Link } from 'react-router-dom';
 
-function Item(props) {
-  const {
-    // idCategory,
-    name,
-    image,
-    description,
-  } = props;
+function Meal({ name, id, image }) {
+  const linkUrl = `/meal/${id}`;
 
   return (
     <div className="card">
@@ -15,15 +10,14 @@ function Item(props) {
       </div>
       <div className="card-content">
         <span className="card-title">{name}</span>
-        <p>{description.slice(0, 60)}...</p>
       </div>
       <div className="card-action">
-        <Link to={`/category/${name}`} className="btn">
-          Watch category
+        <Link to={linkUrl} className="btn">
+          Watch recipe
         </Link>
       </div>
     </div>
   );
 }
 
-export default Item;
+export default Meal;

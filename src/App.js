@@ -6,7 +6,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
-import Movies from './pages/Movies';
+import Category from './pages/Category';
 
 function App() {
   return (
@@ -18,10 +18,9 @@ function App() {
             <Route exact path="/">
               <Home />
             </Route>
-            {/* <Route exact path="/" component={Home} /> */}
             <Route path="/about" component={About} />
             <Route path="/contacts" component={Contact} />
-            <Route path="/movies/:id" component={Movies} />
+            <Route path="/category/:name" component={Category} />
             <Route component={NotFound} />
           </Switch>
         </main>

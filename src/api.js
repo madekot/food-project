@@ -1,6 +1,6 @@
 import { API_URL } from './config';
 
-const transformData = (data) => {
+const transformCategoriesData = ({ categories: data }) => {
   return data.map((item) => {
     const {
       idCategory: id,
@@ -13,22 +13,29 @@ const transformData = (data) => {
   });
 };
 
+const transformFilteredData = ({ meals: data }) => {
+  return data.map((item) => {
+    const { idMeal: id, strMeal: name, strMealThumb: image } = item;
+    return { id, name, image };
+  });
+};
+
 const getMealById = async (mealId) => {
   const response = await fetch(API_URL + `lookup.php?i` + mealId);
   const data = await response.json();
-  return transformData(data.categories);
+  return transformCategoriesData(data);
 };
 
 const getAllCategories = async () => {
   const response = await fetch(API_URL + `categories.php`);
   const data = await response.json();
-  return transformData(data.categories);
+  return transformCategoriesData(data);
 };
 
 const getFilteredCategory = async (catName) => {
-  const response = await fetch(API_URL + `filter.php?c=Seafood` + catName);
+  const response = await fetch(API_URL + `filter.php?c=` + catName);
   const data = await response.json();
-  return transformData(data.categories);
+  return transformFilteredData(data);
 };
 
 export { getMealById, getAllCategories, getFilteredCategory };
