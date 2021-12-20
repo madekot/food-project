@@ -4,15 +4,13 @@ import { getMealById } from '../api';
 import Preloader from '../components/Preloader';
 
 function Recipe() {
-  const { recipe, setRecipe } = useState({});
+  const [recipe, setRecipe] = useState({});
   const { id } = useParams();
   const { goBack } = useHistory();
 
   useEffect(() => {
-    getMealById(id).then((data) => {
-      const result = data;
-      console.log(result);
-      // setRecipe(result);
+    getMealById(id).then(({ meals }) => {
+      setRecipe(meals[0]);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
@@ -22,14 +20,14 @@ function Recipe() {
       <button className="btn" onClick={goBack}>
         Go Back
       </button>
-      {/* {!recipe.idMeal ? (
+      {!recipe.idMeal ? (
         <Preloader />
       ) : (
         <div className="recipe">
           <img src={recipe.strMealThumb} alt={recipe.strMeal} />
           <h1>{recipe.strMeal}</h1>
         </div>
-      )} */}
+      )}
     </>
   );
 }
