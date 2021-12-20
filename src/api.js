@@ -21,9 +21,10 @@ const transformFilteredData = ({ meals: data }) => {
 };
 
 const getMealById = async (mealId) => {
-  const response = await fetch(API_URL + `lookup.php?i` + mealId);
+  const response = await fetch(API_URL + `lookup.php?i=` + mealId);
   const data = await response.json();
-  return transformCategoriesData(data);
+  // return transformCategoriesData(data);
+  return data;
 };
 
 const getAllCategories = async () => {
