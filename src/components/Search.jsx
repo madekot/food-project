@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function Search(cb = Function.prototype) {
+function Search({ cb = Function.prototype }) {
   const [value, setValue] = useState('');
 
   const handleKey = (evt) => {

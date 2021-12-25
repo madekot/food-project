@@ -6,21 +6,21 @@ import Search from '../components/Search';
 
 function Home() {
   const [catalog, setCatalog] = useState([]);
-  const isCatalogEmpty = catalog.length === 0;
   const [filteredCatalog, setFilteredCatalog] = useState([]);
 
   const handleSearch = (str) => {
     setFilteredCatalog(
       catalog.filter((item) =>
-        item.category.toLowerCase().includes(str.toLowerCase()),
+        item.name.toLowerCase().includes(str.toLowerCase()),
       ),
     );
   };
 
+  const isCatalogEmpty = catalog.length === 0;
   const content = isCatalogEmpty ? (
     <Preloader />
   ) : (
-    <CategoryList catalog={setFilteredCatalog} />
+    <CategoryList catalog={filteredCatalog} />
   );
 
   useEffect(() => {
@@ -32,7 +32,7 @@ function Home() {
 
   return (
     <>
-      <Search cb={() => {}} />
+      <Search cb={handleSearch} />
       {content}
     </>
   );
